@@ -1,0 +1,6 @@
+# Font configuration 
+font: 
+  size: 25.0
+
+import:
+  - ~/.config/alacritty/themes/seashells.yaml
