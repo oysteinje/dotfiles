@@ -1,0 +1,35 @@
+# Emacs
+alias emacsd='/usr/bin/emacs --daemon'
+
+# Vim 
+if [ -f $(which nvim) ]; then
+    alias vim='nvim'
+fi
+
+# System
+alias history='history | fzf'
+alias xclip='xclip -selection clipboard'
+
+# Docker
+alias docker_prune='docker ps -f "status=exited" | awk '\''NR > 1 {print $1}'\'' | xargs -I {} sh -c '\''docker rm {}'\'''
+
+# Kubernetes
+alias k='kubectl'
+alias kube-nettools='kubectl run -it --image=jrecord/nettools nettools --restart=Never --rm'
+alias kube-events='kubectl get events --sort-by='.metadata.creationTimestamp''
+
+# OpenVPN
+alias openvpn-connect='sudo openvpn --config /etc/openvpn/client/client.conf'
+
+# Mic test
+alias mic-test-prepare='sudo sudo arecord -l'
+alias mic-test-record='arecord -f cd -d 5 /tmp/test-mic.wav --device="hw:1,0"'
+
+# Git
+alias gitkit-revert='git reset HEAD~1'
+
+# Tmux 
+alias tmx='tmux new -s gen' 
+
+# OpenSSL 
+alias openssl-crtinfo='openssl x509 -text -noout -in'
