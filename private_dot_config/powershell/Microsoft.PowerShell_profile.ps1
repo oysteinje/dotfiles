@@ -1,3 +1,13 @@
+function Load-Env {
+  param(
+    [string]$EnvFile
+   )
+
+  (Get-Content -Path $EnvFile -Encoding UTF8) -replace '"','' |
+    ForEach-Object { $line = $_; $varName, $varValue = $line -split '=', 2;
+                     [System.Environment]::SetEnvironmentVariable($varName, $varValue, [System.EnvironmentVariableTarget]::Process) }; $null
+}
+
 Function Set-Subscription {
     param(
         $Name,
