@@ -132,25 +132,3 @@ bind "set menu-complete-display-prefix on"
 
 # Load custom theme: https://github.com/win0err/aphrodite-terminal-theme
 source ~/.bash_theme.sh
-
-# Environment variables goes here.
-export REPO="${HOME}/repos"
-export REPOS="${HOME}/repos"
-export DOTFILES="${REPO}/qbits/dotfiles"
-export PLAYGROUND="${REPO}/qbits/playground"
-export EDITOR=vim
-export VISUAL=vim
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-
-###################
-# Custom functions
-###################
-
-source <(kubectl completion bash)
-complete -o default -F __start_kubectl k
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-. "$HOME/.cargo/env"
-
