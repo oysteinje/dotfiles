@@ -36,3 +36,23 @@ Function Set-Subscription {
     # Set the chosen subscription
     Set-AzContext -SubscriptionId $ChosenSubscription.Id -TenantId $ChosenSubscription.TenantId | Format-List -Property name, account, subscription, tenant
 }
+
+Function Find-Resources {
+    param(
+        $Name,
+        $Type,
+        $Id,
+        [Switch]$FullDisplay
+    )
+    $query = "where name contains '$Name' | where type contains '$Type' | where id contains '$Id' | order by name desc"
+    $result = Search-AzGraph -Query $query
+    if ($FullDisplay) {
+        Write-Output $result
+    }
+    else {
+        Write-Output $result | Select name, resourceGroup, id, type, tags, properties
+    }
+}
+if (!(Get-Alias findres -ErrorAction SilentlyContinue)) {
+    New-Alias -Name findres -Value Find-Resources
+}
