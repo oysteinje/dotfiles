@@ -33,3 +33,13 @@ alias tmx='tmux new -s gen'
 
 # OpenSSL 
 alias openssl-crtinfo='openssl x509 -text -noout -in'
+
+# Devcontainer 
+alias devc-up="devcontainer up --workspace-folder . --remove-existing-container --dotfiles-repository https://github.com/oysteinje/dotfiles.git"
+alias devc-build="devcontainer up --workspace-folder . --remove-existing-container --build-no-cache --dotfiles-repository https://github.com/oysteinje/dotfiles.git"
+alias devc-exec="devcontainer exec --workspace-folder . $1"
+alias devc-run="devc-exec"
+
+# vscli (open vscode in devcontainer) https://github.com/michidk/vscli 
+alias vs="vscli open"
+alias vsr="vscli recent"
