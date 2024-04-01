@@ -36,9 +36,11 @@
   "Keymap for Bicep major mode")
 
 (add-to-list 'auto-mode-alist '("\\.bicep\\'" . bicep-mode))
+(add-to-list 'auto-mode-alist '("\\.bicepparam\\'" . bicep-mode))
 
 (defconst bicep-font-lock-keywords-1
   (list
+   '("//.*" . 'font-lock-comment-face)
    '("\\<\\(var\\|resource\\|param\\|params\\|target\\)\\>" . 'font-lock-function-name-face)
    '("\\<\\(module\\|targetScope\\|output\\|existing\\|true\\|false\\|for\\|in\\)\\>" . 'font-lock-builtin-face)
    '("\\<\\w+:\\|parameters:\\>" . 'font-lock-keyword-face)
