@@ -8,17 +8,17 @@
 
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;(package! some-package)
-(package! org-present)
-(package! csv-mode)
-(package! elfeed)
+;;(package! org-present)
+;;(package! csv-mode)
+;;(package! elfeed)
 (package! org-bullets)
-(package! straight :pin "3eca39d")
+;;(package! straight :pin "3eca39d")
 ;(package! gptel)
 ;(package! chatgpt-shell)
 ;(package! code-review)
 ;(unpin! code-review)
-(package! nov)
-(package! closql :pin "0a7226331ff1f96142199915c0ac7940bac4afdd")
+;;(package! nov)
+;;(package! closql :pin "0a7226331ff1f96142199915c0ac7940bac4afdd")
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
 ;; https://github.com/radian-software/straight.el#the-recipe-format

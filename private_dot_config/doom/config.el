@@ -76,7 +76,7 @@
 ;; they are implemented.
 
 (use-package! "bicep-mode"
-  :load-path "~/.doom.d/bicep")
+  :load-path "~/.config/doom/bicep")
 
 ;; Disable automatic double characters
 (remove-hook 'doom-first-buffer-hook #'smartparens-global-mode)
@@ -90,5 +90,9 @@
 
 ;; magit-forge
 (setq auth-sources '("~/.authinfo" "~/.authinfo.gpg" "~/.netrc"))
+
+;; install nerdfonts manually by typing
+;; nerd-icons-install-fonts
+;; https://github.com/doomemacs/doomemacs/issues/7368
 
 ;; Done
