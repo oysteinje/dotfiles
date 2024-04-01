@@ -11,7 +11,7 @@ alias history='history | fzf'
 alias xclip='xclip -selection clipboard'
 
 # Docker
-alias docker_prune='docker ps -f "status=exited" | awk '\''NR > 1 {print $1}'\'' | xargs -I {} sh -c '\''docker rm {}'\'''
+alias docker-prune='docker ps -f "status=exited" | awk '\''NR > 1 {print $1}'\'' | xargs -I {} sh -c '\''docker rm {}'\'''
 
 # Kubernetes
 alias k='kubectl'
@@ -37,7 +37,7 @@ alias openssl-crtinfo='openssl x509 -text -noout -in'
 # Devcontainer 
 alias devc-up="devcontainer up --workspace-folder . --remove-existing-container --dotfiles-repository https://github.com/oysteinje/dotfiles.git"
 alias devc-build="devcontainer up --workspace-folder . --remove-existing-container --build-no-cache --dotfiles-repository https://github.com/oysteinje/dotfiles.git"
-alias devc-exec="devcontainer exec --workspace-folder . $1"
+alias devc-run="devcontainer exec --workspace-folder . $1"
 alias devc-run="devc-exec"
 
 # vscli (open vscode in devcontainer) https://github.com/michidk/vscli 
