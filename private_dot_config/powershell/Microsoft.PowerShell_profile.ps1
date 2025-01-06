@@ -45,7 +45,7 @@ Function Find-Resources {
         [Switch]$FullDisplay
     )
     $query = "where name contains '$Name' | where type contains '$Type' | where id contains '$Id' | order by name desc"
-    $result = Search-AzGraph -Query $query
+    $result = Search-AzGraph -Query $query -UseTenantScope
     if ($FullDisplay) {
         Write-Output $result
     }
