@@ -56,3 +56,6 @@ Function Find-Resources {
 if (!(Get-Alias findres -ErrorAction SilentlyContinue)) {
     New-Alias -Name findres -Value Find-Resources
 }
+if (!(Get-Alias k -ErrorAction SilentlyContinue)) {
+    Set-Alias -Name k -Value kubectl
+}
