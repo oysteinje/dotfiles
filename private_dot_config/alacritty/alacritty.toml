@@ -1,0 +1,32 @@
+# Modern Alacritty Config
+
+[general]
+import = ["~/.config/alacritty/themes/catppuccin_mocha.toml"]
+
+[window]
+#opacity = 0.93
+padding = { x = 12, y = 12 }
+decorations = "Full"
+dynamic_padding = true
+
+[font]
+size = 25.0
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+[font.bold]
+family = "JetBrainsMono Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font"
+style = "Italic"
+
+[cursor]
+style = { shape = "Block", blinking = "On" }
+blink_interval = 750
+
+[scrolling]
+history = 10000
