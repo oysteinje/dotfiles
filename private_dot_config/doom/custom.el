@@ -3,23 +3,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(warning-suppress-types
-   '((org-element-cache)
-     (org-element-cache)
-     (org-element-cache)) t))
+ '(magit-todos-insert-after '(bottom) nil nil "Changed by setter of obsolete option `magit-todos-insert-at'")
+ '(package-selected-packages '(devcontainer))
+ '(warning-suppress-types '(((copilot copilot-no-mode-indent)) (defvaralias))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
-;; Copy current git branch to kill ring
-(defun magit-copy-current-branch-to-kill-ring ()
-  "Show the current branch in the echo-area and add it to the `kill-ring'."
-  (interactive)
-  (let ((branch (magit-get-current-branch)))
-    (if branch
-        (progn (kill-new branch)
-               (message "%s" branch))
-      (user-error "There is not current branch"))))
