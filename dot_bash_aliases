@@ -12,6 +12,7 @@ alias xclip='xclip -selection clipboard'
 
 # Docker
 alias docker-prune='docker ps -f "status=exited" | awk '\''NR > 1 {print $1}'\'' | xargs -I {} sh -c '\''docker rm {}'\'''
+alias docker-ps='docker ps --format=json | jq .'
 
 # Kubernetes
 alias k='kubectl'
@@ -34,12 +35,60 @@ alias tmx='tmux new -s gen'
 # OpenSSL 
 alias openssl-crtinfo='openssl x509 -text -noout -in'
 
-# Devcontainer 
-alias devc-up="devcontainer up --workspace-folder . --remove-existing-container --dotfiles-repository https://github.com/oysteinje/dotfiles.git"
-alias devc-build="devcontainer up --workspace-folder . --remove-existing-container --build-no-cache --dotfiles-repository https://github.com/oysteinje/dotfiles.git"
-alias devc-run="devcontainer exec --workspace-folder . $1"
-alias devc-run="devc-exec"
+# Devcontainer
+# Usage: devc [up|build|build-no-cache|exec <cmd>]
+# If multiple .devcontainer/*/devcontainer.json exist, fzf picker is shown.
+# Falls back to default (root .devcontainer) if only one config exists.
+devc() {
+  local action="${1:-up}"
+  local workspace="."
+  local dotfiles="--dotfiles-repository https://github.com/oysteinje/dotfiles.git"
+  local config_flag=""
 
-# vscli (open vscode in devcontainer) https://github.com/michidk/vscli 
-alias vs="vscli open"
-alias vsr="vscli recent"
+  # Find all devcontainer configs (multi-solution style)
+  local configs
+  mapfile -t configs < <(find "${workspace}/.devcontainer" -mindepth 2 -maxdepth 2 -name "devcontainer.json" 2>/dev/null | sort)
+
+  if [[ ${#configs[@]} -gt 1 ]]; then
+    # Show fzf picker with just the solution names (dirname without leading path)
+    local selected
+    selected=$(printf '%s\n' "${configs[@]}" | sed 's|\.\/\.devcontainer/||;s|/devcontainer\.json||' | fzf --prompt="devcontainer > " --height=40% --border)
+    [[ -z "$selected" ]] && return 1
+    config_flag="--config .devcontainer/${selected}/devcontainer.json"
+  elif [[ ${#configs[@]} -eq 1 ]]; then
+    config_flag="--config ${configs[0]}"
+  fi
+
+  case "$action" in
+    up)
+      devcontainer up --workspace-folder "$workspace" $config_flag $dotfiles \
+        --additional-features ghcr.io/devcontainers-extra/features/node-asdf:0
+      ;;
+    build)
+      devcontainer up --workspace-folder "$workspace" $config_flag $dotfiles \
+        --remove-existing-container
+      ;;
+    build-no-cache)
+      devcontainer up --workspace-folder "$workspace" $config_flag $dotfiles \
+        --remove-existing-container --build-no-cache
+      ;;
+    exec|run)
+      shift
+      devcontainer exec --workspace-folder "$workspace" $config_flag "$@"
+      ;;
+    *)
+      echo "Usage: devc [up|build|build-no-cache|exec <cmd>]"
+      return 1
+      ;;
+  esac
+}
+
+alias devc-up="devc up"
+alias devc-build="devc build"
+alias devc-build-no-cache="devc build-no-cache"
+alias devc-exec="devc exec"
+alias devc-run="devc exec"
+
+
+alias bakcup-devc-up="devcontainer up --workspace-folder . --dotfiles-repository https://github.com/oysteinje/dotfiles.git --mount type=bind,source=$HOME/.claude.json,target=/home/.claude.json --mount type=bind,source=$HOME/.claude,target=/root/.claude --additional-features ghcr.io/devcontainers-extra/features/node-asdf:0"
+
