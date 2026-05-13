@@ -1,16 +1,19 @@
 # Modern Alacritty Config
 
 [general]
-import = ["~/.config/alacritty/themes/catppuccin_mocha.toml"]
+#import = ["~/.config/alacritty/themes/catppuccin_mocha.toml"]
+import = ["~/.config/alacritty/themes/catppuccin.toml"]
+#import = ["~/.config/alacritty/themes/tokyo_night.toml"]
+#import = ["~/.config/alacritty/themes/tokyo_night_enhanced.toml"]
 
 [window]
-#opacity = 0.93
-padding = { x = 12, y = 12 }
+#opacity = 0.9
+padding = { x = 12, y = 0 }
 decorations = "Full"
 dynamic_padding = true
 
 [font]
-size = 25.0
+size = 20.0
 
 [font.normal]
 family = "JetBrainsMono Nerd Font"
@@ -25,7 +28,7 @@ family = "JetBrainsMono Nerd Font"
 style = "Italic"
 
 [cursor]
-style = { shape = "Block", blinking = "On" }
+style = { shape = "Underline", blinking = "On" }
 blink_interval = 750
 
 [scrolling]
