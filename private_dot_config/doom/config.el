@@ -21,8 +21,7 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
-;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 20))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -33,7 +32,8 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;;(setq doom-theme 'doom-one)
-(setq doom-theme 'doom-tokyo-night)
+(setq catppuccin-flavor 'mocha)
+(setq doom-theme 'catppuccin)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -82,7 +82,6 @@
 
 (use-package! bicep-mode :load-path "~/.config/doom/bicep-mode")
 
-
 (defun my/task-to-branch-name (input)
   "Convert a task description to a valid git branch name.
 Example: 'Task 57855: docs(Update database hotel documentation)'
@@ -113,3 +112,11 @@ Example: 'Task 57855: docs(Update database hotel documentation)'
 
 (add-to-list 'exec-path "/usr/local/go/bin")
 (add-to-list 'exec-path (expand-file-name "~/go/bin"))
+
+(require 'acp)
+(require 'agent-shell)
+
+(setq agent-shell-anthropic-authentication
+      (agent-shell-anthropic-make-authentication :login t))
+
+(setq agent-shell-preferred-agent-config (agent-shell-anthropic-make-claude-code-config))

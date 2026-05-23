@@ -55,3 +55,9 @@
 ;;
 ;;(package! gptel)
 
+(package! catppuccin-theme)
+
+(package! shell-maker)
+(package! acp)
+(package! agent-shell)
+
